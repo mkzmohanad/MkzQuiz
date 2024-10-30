@@ -14,12 +14,9 @@ function createSendToken(user , res , next) {
 
     if(!token) return next(new errorHandler("there is a problem creating token please try again later" , 500));
 
-    // console.log(token)
-
     res.cookie("JWT" , token , {
         maxAge : Number(process.env.JWT_COOKIES_EXPIRES_IN) * 24 * 60 * 60 * 1000,
         httpOnly : true,
-        // secure : process.env.NODE_ENV === "production",
         secure : true,
         sameSite : "None",
         path : "/",
@@ -29,7 +26,6 @@ function createSendToken(user , res , next) {
     res.status(201).json({
         status : "success",
         token,
-        // authorized : true,
         data : {
             user
         }
@@ -59,7 +55,6 @@ exports.login = asyncHandler(async (req , res , next) => {
     createSendToken(user , res , next);
 })
 exports.logout = asyncHandler(async(req, res, next) => {
-    // console.log(req.user)
     res.clearCookie("JWT" , {
         httpOnly : true,
         secure : true,
@@ -75,10 +70,6 @@ exports.logout = asyncHandler(async(req, res, next) => {
 
 exports.protectRoutes = asyncHandler(async (req , res , next) => {
     let token = req.cookies.JWT;
-    // console.log("-----" , token)
-    // if(req.headers.authorization && req.headers.authorization.startsWith("Bearer ") && req.headers.authorization.split(" ")[1] !== "null" && req.cookies.JWT) token = req.headers.authorization.split(" ")[1];
-    
-    // console.log(token)
     if(!token) return next(new errorHandler("you can't access this endpoint please sign up or login first" , 401));
     
     const decodeJWT = await promisify(JWT.verify)(token , process.env.JWT_SECRET_KEY)
@@ -93,7 +84,6 @@ exports.protectRoutes = asyncHandler(async (req , res , next) => {
 })
 
 exports.restrictedTo = (allowedFor) => asyncHandler(async (req , res , next) => {
-    // console.log(allowedFor)
     if(!allowedFor.includes(req.user.role)) return next(new errorHandler("you are not allowed to access this endpoint!" , 401));
 
     next();

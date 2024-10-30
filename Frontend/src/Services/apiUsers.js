@@ -20,7 +20,6 @@ export async function updateUserDate(newData) {
         const {data} =await axios.patch("http://127.0.0.1:8000/api/v1/users/updateMe" , newData  , {
             withCredentials: true
         })
-        console.log(data)
         return data;
     }
     catch(error) {

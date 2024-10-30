@@ -15,7 +15,6 @@ function UserAccountLayout() {
 
     const {lastScore , totalMatchesPlayed , highestScore , winRate} = user.data.data;
     const {data : rank} = userRank;
-    console.log(rank)
 
     return  <main className="py-10 px-5 md:px-10 flex flex-col gap-8 h-vh bg-darkestColor">
         <WelcomingUser/>

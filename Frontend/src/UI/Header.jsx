@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useLogout } from "../Features/Auth/useLogout";
 import { useToggleModal } from "../Hooks/useToggleModal";
 import { useUserReset } from "../Features/User/useUserReset";
+import { useUserAccount } from "../Features/User/useUserAccount";
 
 import Logo from "./Logo";
 import MiniSpinner from "./MiniSpinner"
 import SettingMenu from "./SettingsMenu";
 import DeleteAndUpdateConfirmation from "./DeleteAndUpdateConfirmation";
 import ConfirmModal from "./ConfirmModal";
-import { useUserAccount } from "../Features/User/useUserAccount";
 import Loading from "./Loading";
 
 const ListItem = tw.li`
@@ -31,7 +31,7 @@ function Header() {
     const {reset , isResetting} = useUserReset();
     const {user , isLoadingUser} = useUserAccount();
     
-    if(isLoadingUser) return <Loading />
+    if(isLoadingUser || isResetting) return <Loading />
     const {role} = user.data.data
 
     function handleLogout() {

@@ -28,7 +28,6 @@ exports.deleteMe = asyncHandler(async (req , res , next) => {
 
     user.isActive = false;
     await user.save();
-    console.log(user)
     res.status(204).json({
         status: "success",
         data: null
@@ -43,7 +42,6 @@ exports.updateMe = asyncHandler(async (req, res , next) => {
         runValidators : true
     });
 
-    console.log("here")
     if(!user) return next(new errorHandler("an error occurred while updating your data",400));
     
     res.status(201).json({

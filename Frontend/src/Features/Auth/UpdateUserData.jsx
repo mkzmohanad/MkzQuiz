@@ -73,7 +73,6 @@ function UpdateUserData() {
     if(isUpdating || isLoading || isUpdatingPassword) return <Loading />
     
     const {username , email} = user.data.data;
-    console.log(isUpdatingPassword)
 
     return  <>
             {toggleUpdatePasswordModal ? <DeleteAndUpdateConfirmation type = {type} handleSetToggleModal = {handleSetToggleUpdatePasswordModal} updatedData={updatedDataHolder}/> : ""}

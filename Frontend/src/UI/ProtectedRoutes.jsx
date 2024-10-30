@@ -20,10 +20,8 @@ function ProtectedRoutes({children}) {
 
     useEffect(function checkAuth(){
         if(!isAuthenticated && !isLoadingUser && shouldCheckAuth) {
-            console.log(error.message)
             navigate("/login")
             toast.error(error?.response?.data?.message || error.message)
-            // toast.error(error.message)
         }
     },[isAuthenticated , isLoadingUser , error , shouldCheckAuth , navigate])
 

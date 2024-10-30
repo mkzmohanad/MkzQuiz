@@ -8,7 +8,6 @@ function UserRoutes() {
     
     if(isLoadingUser) return <Loading />
     const {role} = user.data.data
-    console.log(role)
 
     if(role !== "user") return <Navigate to = "/admin" replace />
 

@@ -37,7 +37,6 @@ function QuizQuestions() {
     const numberOfQuestions = settings?.data?.numberOfQuestions || 20;
 
     const allQuestions = questions?.data?.docs.slice(0 , numberOfQuestions ) || [];
-    console.log(allQuestions)
     
     useEffect(function () {
         if(secondsLeft === 0) {
@@ -60,7 +59,6 @@ function QuizQuestions() {
     },[currentQuestionIndex, allQuestions.length])
     
     function handleNextQuestion() {
-        console.log(currentQuestionIndex)
         setResetCounter((change) => change + 1)
         setCurrentQuestionIndex((question) => question + 1)
         setSelectedAnswer("")

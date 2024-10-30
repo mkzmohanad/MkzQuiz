@@ -100,11 +100,8 @@ function CreateEditQuestion({ handleCloseModalCreateEdit , questionToEdit = {}})
     }
 
     function handleSubmitFunction(data) {
-        console.log(data)
         const {question , options , answer , category} = data;
-        console.log(typeof options)
         const separatedOptions = typeof options === "string" ? options.split(/[/,]/) : options;
-        console.log(separatedOptions)
 
         const finalData = {
             options : separatedOptions,

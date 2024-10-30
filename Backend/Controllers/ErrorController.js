@@ -1,7 +1,6 @@
 const errorHandler = require("../Utils/errorHandler");
 
 function handleDuplicationError(error) {
-    console.log(error)
     return new errorHandler(`${error.errorResponse.errmsg} duplication error at ${error.errorResponse.errmsg.match(/(["'])(\\?.)*?\1/)[0]}` , 400);
 }
 

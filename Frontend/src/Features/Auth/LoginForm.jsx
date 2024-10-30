@@ -17,24 +17,15 @@ import PasswordInput from "../../UI/PasswordInput";
 function LoginForm() {
     const navigate = useNavigate()
     const [showPassword , handleSetShowPassword] = useToggleShowPassword();
-    // const {isLoadingUser , isAuthenticated , error} = useUserAccount();
-
-    // useEffect(() => {
-    //     if (isAuthenticated) navigate("/")
-    // })
     
     const {register ,handleSubmit , formState , reset } = useForm();
     const {errors} = formState; 
-    // console.log(errors?.password?.message)
-
 
     const {login , isLoggingIn} = useLogin();
 
     function handleSubmitFunction(data) {
-        console.log(data);
         login(data , {
             onSuccess : () => {
-                // navigate("/account" , {replace : true});
                 navigate("/")
             },
             onError : () => {
@@ -76,20 +67,3 @@ function LoginForm() {
     </div>
 }
 export default LoginForm;
-
-            {/* <InputBox>
-            <div className="relative">
-                <Input type = {showPassword ? "text" : "password"} disabled={isLoggingIn} placeholder ="Enter Password" {...register("password" , {
-                    required : "please enter your password first",
-                    minLength : {
-                        value : 8,
-                        message : "password must be at least 8 characters long."
-                    }
-                })}/>
-                <InputIcon>
-                    <HiOutlineLockClosed />
-                </InputIcon>
-                <ToggleShowPassword showPassword = {showPassword} handleSetShowPassword = {handleSetShowPassword} />
-            </div>
-                <ErrorLabel error={errors?.password?.message} />
-            </InputBox> */}

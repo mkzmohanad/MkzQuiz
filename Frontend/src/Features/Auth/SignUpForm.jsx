@@ -14,7 +14,6 @@ import Button from "../../UI/Button";
 import MiniSpinner from "../../UI/MiniSpinner";
 import PasswordInput from "../../UI/PasswordInput";
 
-
 function SignUpForm() {
     const [showPassword , handleSetShowPassword] = useToggleShowPassword()
     const [showPasswordConfirmation , handleSetShowPasswordConfirmation] = useToggleShowPassword()
@@ -25,16 +24,12 @@ function SignUpForm() {
 
     const navigate = useNavigate()
 
-
     function handleSubmitFunction(data) {
-        console.log(data)
-        console.log("testing")
         signUp(data , {
             onError : () => {
                 reset()
             },
             onSuccess : () => {
-                // navigate("/account" , {replace : true})
                 navigate("/account")
             }
         })

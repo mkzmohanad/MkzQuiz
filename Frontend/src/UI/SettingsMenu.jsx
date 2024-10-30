@@ -24,14 +24,6 @@ function SettingMenu({handleSetToggleDeleteMeModal , handleSetToggleResetMeModal
     handleSetToggleDeleteMeModal()
   }
 
-  // const theme = {
-  //   styles : {
-  //     menu : {
-  //       bg : "bg-red-400"
-  //     }
-  //   }
-  // }
-
   return (  <>
       <Menu className="" animate={{
         mount: { y: 0 },

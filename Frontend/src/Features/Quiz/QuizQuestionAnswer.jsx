@@ -25,8 +25,6 @@ function QuizQuestionAnswer({question , setSelectedAnswer , selectedAnswer , con
 
     },[options])
 
-    console.log(mixedOptions)
-
     return  mixedOptions.map((option , index) => <QuestionsOption onClick={handleSetSelectedAnswer} key={option} option={option} optionNum = {index + 1} selectedAnswer = {selectedAnswer} confirmedAnswer={confirmedAnswer}/>)
 }
 export default QuizQuestionAnswer;

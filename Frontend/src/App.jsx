@@ -17,7 +17,7 @@ import UserRoutes from "./UI/UserRoutes";
 import AdminRoutes from "./UI/AdminRoutes";
 import UpdateAllUsers from "./Features/Admin/UpdateAllUsers";
 import UpdateQuizQuestions from "./Features/Admin/UpdateQuizQuestions";
-import PageNotFound from "./UI/PageNotFound";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
     const queryClient = new QueryClient({

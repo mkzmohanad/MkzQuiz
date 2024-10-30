@@ -135,8 +135,6 @@ userSchema.pre("findOneAndUpdate" , async function(next) {
             throw new Error(`Failed to update match stats: ${error.message}`);
         }
     }
-    
-    console.log("going next")
     next();
 })
 
@@ -153,6 +151,3 @@ userSchema.methods.isChangedPassword = async function (tokenCreatedTime) {
 
 const User = mongoose.model('User' , userSchema);
 module.exports = User;
-
-
-// check for the update in front in the api

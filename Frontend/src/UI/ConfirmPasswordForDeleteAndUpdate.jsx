@@ -4,12 +4,12 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useToggleShowPassword } from "../Hooks/useToggleShowPassword";
 import { useDeleteMe } from "../Features/User/useDeleteMe";
 import { useLogout } from "../Features/Auth/useLogout";
+import { useUpdateUserPassword } from "../Features/Auth/useUpdateUserPassword";
+import { useUpdateUserData } from "../Features/User/useUpdateUserData";
 
 import Button from "./Button"
 import PasswordInput from "./PasswordInput";
 import MiniSpinner from "./MiniSpinner";
-import { useUpdateUserPassword } from "../Features/Auth/useUpdateUserPassword";
-import { useUpdateUserData } from "../Features/User/useUpdateUserData";
 
 function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , updatedData}) {
 
@@ -25,7 +25,6 @@ function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , update
 
     function handleSubmitConfirmPasswordForDeleteAndUpdate(data) {
         if(type === "delete") {
-            console.log(data)
             deleteMe(data , {
                 onSuccess : () => {
                     logout();

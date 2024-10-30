@@ -25,12 +25,9 @@ export async function loginApi(loginData) { // for security return data without 
             },
             
         })
-        console.log(data)
-        console.log(data.token)
         return data;
     }
     catch(error) {
-        console.log(error)
         return error
     }
 }

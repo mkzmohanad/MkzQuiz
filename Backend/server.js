@@ -10,12 +10,10 @@ const app = require("./app");
 
 const DATABASE = process.env.DATABASE.replace("<DB_PASSWORD>" , process.env.DATABASE_PASSWORD);
 
-mongoose.connect(DATABASE).then(() => console.log("Connected to database!"))
+mongoose.connect(DATABASE)
 
 const port = process.env.PORT;
-const server = app.listen(port , () => {
-    console.log("server is running...")
-});
+const server = app.listen(port , () => {});
 
 process.on("unhandledRejection" , err => {
     server.close(() => {

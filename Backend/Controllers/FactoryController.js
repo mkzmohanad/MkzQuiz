@@ -5,7 +5,6 @@ const shuffleData = require("../Utils/shuffleData");
 exports.getAll = Model => asyncHandler(async (req, res, next) => {
     let query;
     query = Model.find().select("-__v");
-    // if(query.mongooseCollection.modelName === "Question") query = query.limit(20);
 
     let docs = await query;
     if(query.mongooseCollection.modelName === "Question") docs = shuffleData(docs);
