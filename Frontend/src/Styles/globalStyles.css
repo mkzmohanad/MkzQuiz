@@ -1,0 +1,249 @@
+/* --------------------------- MINI SPINNER --------------------------- */
+.miniSpinner {
+    width: 100%;
+    height: 2rem;
+    animation: rotateSpinner 1.5s infinite linear;
+}
+@keyframes rotateSpinner {
+    to {
+        transform: rotate(1turn)
+      }
+}
+
+/* --------------------------- SIGNIN/UP LINES --------------------------- */
+
+.orSignInUp::after,
+.orSignInUp::before {
+    content: "";
+    background-color:#f1f3f5;
+    display: inline-block;
+    width : 45%;
+    height : 1px;
+    position: absolute;
+    top:50%;
+    right: 32%;
+    transform: translate(-50%, -50%);
+}
+.orSignInUp::after {
+    content: "";
+    left: 77%;
+}
+
+/* --------------------------- SPINNER --------------------------- */
+
+.spinner,
+.spinner div {
+  box-sizing: border-box;
+  color: rgb(29 78 216);
+}
+.spinner {
+  display: inline-block;
+  position: relative;
+  width: 160px; /* Increased spinner size */
+  height: 160px; /* Increased spinner size */
+}
+.spinner div {
+  position: absolute;
+  top: 66.67px; /* Adjusted top position based on new size */
+  width: 40px; /* Increased dot size */
+  height: 40px; /* Increased dot size */
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.spinner div:nth-child(1) {
+  left: 20px; /* Adjusted based on bigger size */
+  animation: spinner1 0.6s infinite;
+}
+.spinner div:nth-child(2) {
+  left: 20px; /* Adjusted based on bigger size */
+  animation: spinner2 0.6s infinite;
+}
+.spinner div:nth-child(3) {
+  left: 80px; /* Adjusted based on bigger size */
+  animation: spinner2 0.6s infinite;
+}
+.spinner div:nth-child(4) {
+  left: 140px; /* Adjusted based on bigger size */
+  animation: spinner3 0.6s infinite;
+}
+
+@keyframes spinner1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes spinner3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes spinner2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(60px, 0); /* Increased translation distance */
+  }
+}
+
+/* --------------------------- CIRCULAR PROGRESS --------------------------- */
+
+.circular-timer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring__circle {
+  stroke-dasharray: 219.911; /* Circumference of the circle (2 * Math.PI * r) */
+  stroke-dashoffset: 219.911; /* Start with full circumference */
+  transition: stroke-dashoffset 1s linear; /* Adjust transition duration as needed */
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: #f1f3f5;
+}
+
+/* --------------------------- CARDS --------------------------- */
+.container {
+  max-width: 50rem;
+  padding: 1rem 1rem 4rem 1rem;
+  margin: 0 auto;
+}
+
+.swiper_container {
+  height: 20rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.swiper-slide {
+  width: 37rem;
+  height: 42rem;
+  position: relative;
+}
+
+.swiper-slide img {
+  width: 37rem;
+  height: 42rem;
+  border-radius: 2rem;
+  object-fit: cover;
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none;
+}
+
+.slider-controler {
+  position: relative;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:white;
+  /* margin: 0 auto; */
+}
+
+.slider-controler .swiper-button-next {
+  left: 58% !important;
+  transform: translateX(-58%) !important;
+}
+
+@media (max-width: 1150px) {
+  .slider-controler .swiper-button-next {
+    left: 70% !important;
+    transform: translateX(-70%) !important;
+  }
+}
+@media (max-width: 1150px) {
+  .slider-controler .swiper-button-prev {
+    left: 35% !important;
+    transform: translateX(-70%) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .slider-controler .swiper-button-next {
+    left: 80% !important;
+    transform: translateX(-80%) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .slider-controler .swiper-button-next {
+    left: 95% !important;
+    transform: translateX(-95%) !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .slider-controler .swiper-button-prev {
+    left: 20% !important;
+    transform: translateX(-20%) !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .slider-controler .swiper-button-prev {
+    left: 5% !important;
+    transform: translateX(-5%) !important;
+  }
+}
+
+.slider-controler .slider-arrow {
+  background: var(--white);
+  width: 3.5rem;
+  border-radius: 50%;
+  left: 42%;
+  transform: translateX(-42%);
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+  /* margin : 0 1px !important; */
+}
+
+.slider-controler .slider-arrow ion-icon {
+  font-size: 2rem;
+  color: #f1f3f5;
+}
+
+.slider-controler .slider-arrow::after {
+  content: '';
+}
+
+.swiper-pagination {
+  position: relative !important;
+  width: fit-content !important;
+  bottom: 3px !important;
+  /* backGround-color: #f1f3f5; */
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: white !important;
+  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #f1f3f5;;
+}
