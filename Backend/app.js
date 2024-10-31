@@ -12,7 +12,7 @@ const settingsRoutes = require('./Routes/SettingsRoutes');
 const app = express();
 
 const corsOptions = {
-    origin: ['http://localhost:5173'], // Your frontend origin
+    origin: [process.env.FRONTEND_LOCALHOST ? `${process.env.FRONTEND_LOCALHOST}` : 'http://localhost:5173'], // Your frontend origin
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
