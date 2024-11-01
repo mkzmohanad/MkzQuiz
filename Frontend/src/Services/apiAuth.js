@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function signUpApi(signUpData) {
     try{
-        const {data} = await axios.post("http://127.0.0.1:8000/api/v1/users/signup" , signUpData , {
+        const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/signup` , signUpData , {
             withCredentials : true,
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ export async function signUpApi(signUpData) {
 
 export async function loginApi(loginData) { // for security return data without token (exclude the token)
     try {
-        const {data} = await axios.post("http://127.0.0.1:8000/api/v1/users/login" , loginData , {
+        const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users/login` , loginData , {
             withCredentials : true,
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export async function loginApi(loginData) { // for security return data without 
 
 export async function logout() { 
     try{
-        await axios.get("http://127.0.0.1:8000/api/v1/users/logout" , {
+        await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/logout` , {
             withCredentials: true
         })
     }
@@ -45,7 +45,7 @@ export async function logout() {
 
 export async function updatePassword(newPassword) {
     try{
-        const {data} = await axios.patch("http://127.0.0.1:8000/api/v1/users/updatePassword" , newPassword , {
+        const {data} = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/users/updatePassword` , newPassword , {
             withCredentials: true
         })
 

@@ -1,8 +1,9 @@
 import axios from "axios"
 
+
 export async function getAllUsers() {
     try {
-        const {data} = await axios.get("http://127.0.0.1:8000/api/v1/users/" , {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/` , {
             withCredentials : true,
         })
 
@@ -15,7 +16,7 @@ export async function getAllUsers() {
 
 export async function deleteUser(userId) {
     try{
-        await axios.delete(`http://127.0.0.1:8000/api/v1/users/${userId}` , {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${userId}` , {
             withCredentials : true,
         })
     }

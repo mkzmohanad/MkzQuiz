@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getTopPlayers() {
     try {
-        const {data} = await axios.get("http://127.0.0.1:8000/api/v1/users/topUsers" , {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/topUsers` , {
             withCredentials: true 
         });
 
