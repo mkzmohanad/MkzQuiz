@@ -13,7 +13,7 @@ const DATABASE = process.env.DATABASE.replace("<DB_PASSWORD>" , process.env.DATA
 mongoose.connect(DATABASE)
 
 const port = process.env.PORT;
-const server = app.listen(port , () => {});
+const server = app.listen(port , () => {console.log("good")});
 
 process.on("unhandledRejection" , err => {
     server.close(() => {

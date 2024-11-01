@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for Quiz website",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "start:prod": "SET NODE_ENV=production&&nodemon server.js"
+    "start": "nodemon index.js",
+    "start:prod": "SET NODE_ENV=production&&nodemon index.js"
   },
   "author": "mohanad shohdy",
   "license": "ISC",
