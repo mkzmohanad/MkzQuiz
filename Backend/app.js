@@ -17,8 +17,10 @@ const corsOptions = {
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
-app.use(cookieParser());
 app.use(cors(corsOptions))
+app.options('*', cors(corsOptions));
+
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 // if(process.env.NODE_ENV === 'development') console.log("in development mode");
