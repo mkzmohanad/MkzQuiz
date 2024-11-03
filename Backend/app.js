@@ -12,7 +12,7 @@ const settingsRoutes = require('./Routes/SettingsRoutes');
 const app = express();
 
 const corsOptions = {
-    origin: "mkz-quiz-frontend-drab.vercel.app", // Your frontend origin
+    origin: "https://mkz-quiz-frontend-drab.vercel.app", // Your frontend origin
     methods : ['GET', 'POST', 'PATCH' , 'DELETE'],
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
