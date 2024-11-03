@@ -36,6 +36,14 @@ app.all("*" , (req , res , next) => {
     next(new errorHandler(`the following url ${req.originalUrl} is not a valid url please enter an existing url` , 404))
 })
 
+app.use((req, res, next) => {
+    console.log('Incoming request:', req.method, req.url);
+    res.on('finish', () => {
+        console.log('Response headers:', res.getHeaders());
+    });
+    next();
+});
+
 app.use(globalErrorHandler)
 
 
