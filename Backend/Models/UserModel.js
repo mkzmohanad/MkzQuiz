@@ -116,8 +116,7 @@ userSchema.pre("findOneAndUpdate" , async function(next) {
 
     if(update.startGame) update.totalTakenTimeLastMatch = Date.now();
 
-    if(doc.startGame , !update.startGame , update.lastScore>=0 , update.isWin , update.totalCorrectAnswersLastMatch>=0) {
-
+    if(doc.startGame && !update.startGame && update.lastScore>=0 && update.isWin && update.totalCorrectAnswersLastMatch>=0) {
         update.startGame = false 
         const convertTimeToSeconds = (Date.now() - doc.totalTakenTimeLastMatch)
         update.totalTakenTimeLastMatch = convertTimeToSeconds / 1000;

@@ -43,6 +43,7 @@ function QuizQuestions() {
             toast.error("Time is over for this question head to the next one and be faster!");
             handleSetConfirmQuestion();
             handleNextQuestion();
+            setTotalWrongAnswers((currentWrongAnswers) => currentWrongAnswers += 1)
         }
     },[secondsLeft])
 

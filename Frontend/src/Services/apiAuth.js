@@ -18,7 +18,7 @@ export async function signUpApi(signUpData) {
 
 export async function loginApi(loginData) { // for security return data without token (exclude the token)
     try {
-        const {data} = await axios.post('https://mkz-quiz-backend.vercel.app/api/v1/users/login' , loginData , {
+        const {data} = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/login` , loginData , {
             withCredentials : true,
             headers: {
                 'Content-Type': 'application/json',

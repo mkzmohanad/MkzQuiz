@@ -70,7 +70,6 @@ exports.logout = asyncHandler(async(req, res, next) => {
 
 exports.protectRoutes = asyncHandler(async (req , res , next) => {
     let token = req.cookies.JWT;
-    console.log(token)
     if(!token) return next(new errorHandler("you can't access this endpoint please sign up or login first" , 401));
     
     const decodeJWT = await promisify(JWT.verify)(token , process.env.JWT_SECRET_KEY)
