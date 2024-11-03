@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getMe() {
     try {
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/getMe` , {
+        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/getMe` , {
             withCredentials: true 
         });
         const {data : userRank} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/getCurrentUserRank` , {
