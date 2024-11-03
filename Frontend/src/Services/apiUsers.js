@@ -2,10 +2,10 @@ import axios from "axios";
 
 export async function getMe() {
     try {
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/getMe` , {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/getMe` , {
             withCredentials: true 
         });
-        const {data : userRank} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/getCurrentUserRank` , {
+        const {data : userRank} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/getCurrentUserRank` , {
             withCredentials: true 
         });
         return {data , isAuthenticated : true , userRank};
@@ -17,7 +17,7 @@ export async function getMe() {
 
 export async function updateUserDate(newData) {
     try {
-        const {data} =await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/users/updateMe` , newData  , {
+        const {data} =await axios.patch(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/updateMe` , newData  , {
             withCredentials: true
         })
         return data;
@@ -29,7 +29,7 @@ export async function updateUserDate(newData) {
 
 export async function resetMe() {
     try {
-        const {data} =await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/users/resetMe`, {} , {
+        const {data} =await axios.patch(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/resetMe`, {} , {
             withCredentials: true
         })
         return data;
@@ -41,7 +41,7 @@ export async function resetMe() {
 
 export async function deleteMe(password) {
     try {
-        const {data} = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/users/deleteMe`, password , {
+        const {data} = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/deleteMe`, password , {
             withCredentials: true,
         })
         return data;

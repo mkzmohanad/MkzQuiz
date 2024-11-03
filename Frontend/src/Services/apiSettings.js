@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getSettings() {
     try {
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/settings` , {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/settings` , {
             withCredentials: true
         });
 

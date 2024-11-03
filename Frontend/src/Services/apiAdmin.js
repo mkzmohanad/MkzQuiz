@@ -3,7 +3,7 @@ import axios from "axios"
 
 export async function getAllUsers() {
     try {
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/` , {
+        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/` , {
             withCredentials : true,
         })
 
@@ -16,7 +16,7 @@ export async function getAllUsers() {
 
 export async function deleteUser(userId) {
     try{
-        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/users/${userId}` , {
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/${userId}` , {
             withCredentials : true,
         })
     }
