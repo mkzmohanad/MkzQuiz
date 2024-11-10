@@ -5,6 +5,7 @@ export async function getAllUsers() {
     try {
         const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/` , {
             withCredentials : true,
+            headers : {'Content-Type': 'application/json',}
         })
 
         return data
