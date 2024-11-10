@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getTopPlayers() {
     try {
-        const {data} = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/v1/users/topUsers` , {
+        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/topUsers` , {
             withCredentials: true 
         });
 
