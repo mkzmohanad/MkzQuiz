@@ -1,5 +1,23 @@
 {
   "rewrites": [
-    { "source" : "/(.*)" , "destination" : "/"}
+    {
+      "source": "/api/(.*)",
+      "destination": "https://your-backend-domain.com/api/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://mkz-quiz-frontend.vercel.app"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        }
+      ]
+    }
   ]
 }
