@@ -2,11 +2,13 @@ import axios from "axios";
 
 export async function getMe() {
     try {
-        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.appapi/v1/users/getMe` , {
-            withCredentials: true 
+        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/getMe` , {
+            withCredentials: true ,
+            headers : {'Content-Type': 'application/json',}
         });
-        const {data : userRank} = await axios.get(`https://mkz-quiz-backend.vercel.appapi/v1/users/getCurrentUserRank` , {
-            withCredentials: true 
+        const {data : userRank} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/getCurrentUserRank` , {
+            withCredentials: true ,
+            headers : {'Content-Type': 'application/json',}
         });
         return {data , isAuthenticated : true , userRank};
     }
@@ -17,7 +19,7 @@ export async function getMe() {
 
 export async function updateUserDate(newData) {
     try {
-        const {data} =await axios.patch(`https://mkz-quiz-backend.vercel.appapi/v1/users/updateMe` , newData  , {
+        const {data} =await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/updateMe` , newData  , {
             withCredentials: true
         })
         return data;
@@ -29,7 +31,7 @@ export async function updateUserDate(newData) {
 
 export async function resetMe() {
     try {
-        const {data} =await axios.patch(`https://mkz-quiz-backend.vercel.appapi/v1/users/resetMe`, {} , {
+        const {data} =await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/resetMe`, {} , {
             withCredentials: true
         })
         return data;
@@ -41,7 +43,7 @@ export async function resetMe() {
 
 export async function deleteMe(password) {
     try {
-        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.appapi/v1/users/deleteMe`, password , {
+        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/deleteMe`, password , {
             withCredentials: true,
         })
         return data;
