@@ -8,15 +8,37 @@ process.on('uncaughtException', err => {
 dotenv.config({path : "./config.env"});
 const app = require("./app");
 
-const DATABASE = process.env.DATABASE.replace("<DB_PASSWORD>" , process.env.DATABASE_PASSWORD);
+// const mongoose = require('mongoose');
 
-mongoose.connect(DATABASE)
+let isConnected = false; // Global connection state
 
-const port = process.env.PORT;
-const server = app.listen(port , () => {});
+const connectDB = async () => {
+    if (isConnected) {
+        console.log('Using existing database connection...');
+        return;
+    }
 
-process.on("unhandledRejection" , err => {
-    server.close(() => {
-        process.exit(1)
-    })
-})
+    try {
+        const DB = process.env.DATABASE_STRING.replace(
+            '<db_password>',
+            process.env.DATABASE_password
+        );
+
+        const db = await mongoose.connect(DB, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000, // Timeout if no connection
+            socketTimeoutMS: 45000,         // Close sockets after 45 seconds
+            keepAlive: true,
+            keepAliveInitialDelay: 300000   // 5 minutes
+        });
+
+        isConnected = db.connections[0].readyState === 1;
+        console.log('Connected to database...');
+    } catch (error) {
+        console.error('Database connection error:', error);
+        process.exit(1);
+    }
+};
+
+module.exports = connectDB;
