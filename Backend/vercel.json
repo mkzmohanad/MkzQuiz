@@ -9,7 +9,7 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "/Backend/api/$1"
+        "dest": "/Backend/index.js"
       }
     ]
   }
