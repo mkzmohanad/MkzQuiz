@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "npx serve -s dist -l 3000",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    
+    "lint": "eslint ."
+    
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.10",
