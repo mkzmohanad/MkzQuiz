@@ -58,8 +58,8 @@ exports.logout = asyncHandler(async(req, res, next) => {
     res.clearCookie("JWT" , {
         httpOnly : true,
         secure : true,
-        sameSite : "None",
-        path : "/",
+        sameSite : "none",
+        // path : "/",
     });
 
     res.status(204).json({
