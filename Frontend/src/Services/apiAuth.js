@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export async function signUpApi(signUpData) {
     try{
-        const {data} = await axios.post(`https://mkzquiz-production.up.railway.app/api/v1/users/signup` , signUpData , {
+        const {data} = await axios.post(`${BACKEND_URL}/api/v1/users/signup` , signUpData , {
             withCredentials : true,
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +20,7 @@ export async function signUpApi(signUpData) {
 
 export async function loginApi(loginData) { // for security return data without token (exclude the token)
     try {
-        const {data} = await axios.post(`https://mkzquiz-production.up.railway.app/api/v1/users/login` , loginData , {
+        const {data} = await axios.post(`${BACKEND_URL}/api/v1/users/login` , loginData , {
             withCredentials : true,
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +37,7 @@ export async function loginApi(loginData) { // for security return data without 
 
 export async function logout() { 
     try{
-        await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/logout` , {
+        await axios.get(`${BACKEND_URL}/api/v1/users/logout` , {
             withCredentials: true
         })
     }
@@ -46,7 +48,7 @@ export async function logout() {
 
 export async function updatePassword(newPassword) {
     try{
-        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/updatePassword` , newPassword , {
+        const {data} = await axios.patch(`${BACKEND_URL}/api/v1/users/updatePassword` , newPassword , {
             withCredentials: true
         })
 

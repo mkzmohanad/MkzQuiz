@@ -1,12 +1,14 @@
 import axios from "axios";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export async function getMe() {
     try {
-        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/getMe` , {
+        const {data} = await axios.get(`${BACKEND_URL}/api/v1/users/getMe` , {
             withCredentials: true ,
             headers : {'Content-Type': 'application/json',}
         });
-        const {data : userRank} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/getCurrentUserRank` , {
+        const {data : userRank} = await axios.get(`${BACKEND_URL}/api/v1/users/getCurrentUserRank` , {
             withCredentials: true ,
             headers : {'Content-Type': 'application/json',}
         });
@@ -19,7 +21,7 @@ export async function getMe() {
 
 export async function updateUserDate(newData) {
     try {
-        const {data} =await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/updateMe` , newData  , {
+        const {data} =await axios.patch(`${BACKEND_URL}/api/v1/users/updateMe` , newData  , {
             withCredentials: true
         })
         return data;
@@ -31,7 +33,7 @@ export async function updateUserDate(newData) {
 
 export async function resetMe() {
     try {
-        const {data} =await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/resetMe`, {} , {
+        const {data} =await axios.patch(`${BACKEND_URL}/api/v1/users/resetMe`, {} , {
             withCredentials: true
         })
         return data;
@@ -43,7 +45,7 @@ export async function resetMe() {
 
 export async function deleteMe(password) {
     try {
-        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/deleteMe`, password , {
+        const {data} = await axios.patch(`${BACKEND_URL}/api/v1/users/deleteMe`, password , {
             withCredentials: true,
         })
         return data;

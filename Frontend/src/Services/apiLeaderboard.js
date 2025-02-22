@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export async function getTopPlayers() {
     try {
-        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/topUsers` , {
+        const {data} = await axios.get(`${BACKEND_URL}/api/v1/users/topUsers` , {
             withCredentials: true 
         });
 

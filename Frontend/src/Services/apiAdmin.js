@@ -1,9 +1,10 @@
 import axios from "axios"
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export async function getAllUsers() {
     try {
-        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/` , {
+        const {data} = await axios.get(`${BACKEND_URL}/v1/users/` , {
             withCredentials : true,
             headers : {'Content-Type': 'application/json',}
         })
@@ -17,7 +18,7 @@ export async function getAllUsers() {
 
 export async function deleteUser(userId) {
     try{
-        await axios.delete(`https://mkzquiz-production.up.railway.app/api/v1/users/${userId}` , {
+        await axios.delete(`${BACKEND_URL}/v1/users/${userId}` , {
             withCredentials : true,
         })
     }

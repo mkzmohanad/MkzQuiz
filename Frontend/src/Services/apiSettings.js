@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 export async function getSettings() {
     try {
-        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/settings` , {
+        const {data} = await axios.get(`${BACKEND_URL}/api/v1/settings` , {
             withCredentials: true
         });
 
