@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getSettings() {
     try {
-        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/settings` , {
+        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/settings` , {
             withCredentials: true
         });
 
