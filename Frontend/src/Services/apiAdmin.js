@@ -4,7 +4,7 @@ import axios from "axios"
 export async function getAllUsers() {
     try {
         const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/v1/users/` , {
-            withCredentials : true,
+            withCredentials : "include",
             headers : {'Content-Type': 'application/json',}
         })
 
@@ -18,7 +18,7 @@ export async function getAllUsers() {
 export async function deleteUser(userId) {
     try{
         await axios.delete(`https://mkz-quiz-backend.vercel.app/v1/users/${userId}` , {
-            withCredentials : true,
+            withCredentials : "include",
         })
     }
     catch(error) {
