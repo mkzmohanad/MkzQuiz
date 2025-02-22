@@ -12,11 +12,11 @@ const settingsRoutes = require('./Routes/SettingsRoutes');
 const app = express();
 
 const corsOptions = {
-    origin: "https://mkz-quiz-frontend.vercel.app", // Your frontend origin
-    methods : ['GET', 'POST', 'PATCH' , 'DELETE'],
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-    allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], // Add allowed headers
-    exposedHeaders: ['set-cookie'], // Expose headers if needed
+    origin: "https://mkz-quiz-frontend.vercel.app",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token", "headers"], // Add "headers"
+    exposedHeaders: ["set-cookie"],
 };
 
 app.use(cors(corsOptions))
