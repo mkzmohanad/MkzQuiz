@@ -2,8 +2,8 @@ import axios from "axios";
 
 export async function getAllQuestions() {
     try {
-        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/questions` , {
-            withCredentials : "include",
+        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/questions` , {
+            withCredentials : true,
         })
 
         return data
@@ -15,8 +15,8 @@ export async function getAllQuestions() {
 
 export async function userStartedGame(isStartedGame) {
     try {
-        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/updateMe`, isStartedGame , {
-            withCredentials: "include",
+        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/updateMe`, isStartedGame , {
+            withCredentials: true,
         })
         return data
     }
@@ -27,8 +27,8 @@ export async function userStartedGame(isStartedGame) {
 
 export async function userCompletedGame(isCompletedGame) {
     try {
-        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/updateMe`, isCompletedGame , {
-            withCredentials: "include",
+        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/updateMe`, isCompletedGame , {
+            withCredentials: true,
         })
         return data
     }
@@ -39,8 +39,8 @@ export async function userCompletedGame(isCompletedGame) {
 
 export async function updateUserResults(newResults) {
     try{
-        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/users/updateMe`, newResults , {
-            withCredentials: "include",
+        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/users/updateMe`, newResults , {
+            withCredentials: true,
         })
 
         return data
@@ -52,8 +52,8 @@ export async function updateUserResults(newResults) {
 
 export async function deleteSingleQuestion(questionToDelete) {
     try{
-        const {data} = await axios.delete(`https://mkz-quiz-backend.vercel.app/api/v1/questions/${questionToDelete}` , {
-            withCredentials: "include",
+        const {data} = await axios.delete(`https://mkzquiz-production.up.railway.app/api/v1/questions/${questionToDelete}` , {
+            withCredentials: true,
         })
 
         return data
@@ -65,8 +65,8 @@ export async function deleteSingleQuestion(questionToDelete) {
 
 export async function deleteAllQuestions() {
     try {
-        await axios.delete(`https://mkz-quiz-backend.vercel.app/api/v1/questions` , {
-            withCredentials : "include",
+        await axios.delete(`https://mkzquiz-production.up.railway.app/api/v1/questions` , {
+            withCredentials : true,
         })
 
     }
@@ -77,8 +77,8 @@ export async function deleteAllQuestions() {
 
 export async function createNewQuestion(question) {
     try{
-        const {data} = await axios.post(`https://mkz-quiz-backend.vercel.app/api/v1/questions` , question , {
-            withCredentials : "include",
+        const {data} = await axios.post(`https://mkzquiz-production.up.railway.app/api/v1/questions` , question , {
+            withCredentials : true,
         })
 
         return data
@@ -92,8 +92,8 @@ export async function editQuestion(questionToEdit) {
     const {id , finalData} = questionToEdit;
 
     try{
-        const {data} = await axios.patch(`https://mkz-quiz-backend.vercel.app/api/v1/questions/${id}` , finalData , {
-            withCredentials : "include"
+        const {data} = await axios.patch(`https://mkzquiz-production.up.railway.app/api/v1/questions/${id}` , finalData , {
+            withCredentials : true
         })
         return data
     }

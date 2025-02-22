@@ -2,8 +2,8 @@ import axios from "axios";
 
 export async function getTopPlayers() {
     try {
-        const {data} = await axios.get(`https://mkz-quiz-backend.vercel.app/api/v1/users/topUsers` , {
-            withCredentials: "include" 
+        const {data} = await axios.get(`https://mkzquiz-production.up.railway.app/api/v1/users/topUsers` , {
+            withCredentials: true 
         });
 
         return data
