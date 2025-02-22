@@ -12,7 +12,7 @@ const settingsRoutes = require('./Routes/SettingsRoutes');
 const app = express();
 
 const corsOptions = {
-    origin: process.env.FRONTEND_LOCALHOST,
+    origin: [process.env.FRONTEND_LOCALHOST],
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token", "headers"], // Add "headers"
