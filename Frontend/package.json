@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "start": "npm run build && npx serve -s dist -l $PORT",
+    "build": "NODE_OPTIONS='--max-old-space-size=1024' vite build",
+    "start": "npm run build && npx serve -s dist -l 3000",
     "lint": "eslint .",
     "preview": "vite preview"
   },
