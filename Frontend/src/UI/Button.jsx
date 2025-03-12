@@ -8,7 +8,7 @@ function Button({size , variation , disabled , onClick , children}) {
         signInUp : `bg-blue-600 ${disabled ? "hover:bg-blue-600" : "hover:bg-blue-700"}`,
         start : `bg-blue-600 ${disabled ? "hover:bg-blue-600" : "hover:bg-blue-700"} w-full xl:w-1/2 h-fit flex items-center justify-center !text-2xl gap-1`,
         back : "bg-gray-700 hover:bg-gray-800 w-full w-full xl:w-1/2 h-fit flex items-center justify-center !text-2xl gap-1",
-        confirm : `w-full sm:w-2/3 md:w-2/3 lg:w-1/3 flex items-center justify-center gap-1 bg-green-600 ${disabled ? "hover:bg-green-600" : "hover:bg-green-700"}`,
+        confirm : `w-full sm:w-2/3 md:w-2/3 flex items-center justify-center gap-1 bg-green-600 ${disabled ? "hover:bg-green-600" : "hover:bg-green-700"}`,
         next : `w-full sm:w-3/6 flex items-center justify-center bg-blue-600 ${disabled ? "hover:bg-blue-600" : "hover:bg-blue-700"} px-5 `,
         finish : `w-full sm:w-1/2 flex items-center justify-center gap-1 bg-green-600 ${disabled ? "hover:bg-green-600" : "hover:bg-green-700"} !text-2xl`,
         danger : "w-full sm:w-2/3 bg-red-500 ",

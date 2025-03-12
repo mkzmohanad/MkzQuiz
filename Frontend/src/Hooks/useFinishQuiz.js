@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useUpdateUserData } from "../Features/User/useUpdateUserData";
 
 export function useFinishQuiz() {
-    const {updateUserData , isUpdating} = useUpdateUserData();
+    const {updateUserData} = useUpdateUserData();
     const navigate = useNavigate();
     
     const handleFinishQuiz= async (data , win) => {

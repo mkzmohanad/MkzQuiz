@@ -1,5 +1,6 @@
 import LoginForm from "../Features/Auth/LoginForm";
 import ChangeSignInUp from "../UI/ChangeSignInUp";
+import ForgetPasswordAction from "../UI/ForgetPasswordAction";
 import HeadingOR from "../UI/HeadingOR";
 import Logo from "../UI/Logo";
 import SignInUpHeading from "../UI/SignInUpHeading";
@@ -12,6 +13,7 @@ function Login() {
         <LoginForm />
        <HeadingOR /> 
        <ChangeSignInUp path = "signup" action = "Sign Up">{"Don't have an account yet?"}</ChangeSignInUp>
+       <ForgetPasswordAction path = "forgetPassword" action = "Reset Password Now">{"Forgot your password?"}</ForgetPasswordAction>
     </div>
 </div>
 }

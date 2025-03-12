@@ -1,8 +1,11 @@
 const JWT = require("jsonwebtoken");
+const {promisify} = require("util");
+const crypto = require("crypto")
+
 const asyncHandler = require("../Utils/asyncHandler");
 const User = require("../Models/UserModel");
 const errorHandler = require("../Utils/errorHandler");
-const {promisify} = require("util");
+const Email = require("../Utils/emailHandler");
 
 function signToken(user) {
     return JWT.sign({id : user.id} , process.env.JWT_SECRET_KEY , {
@@ -42,6 +45,9 @@ exports.signup = asyncHandler(async (req , res , next) => {
         password,
         passwordConfirmation,
     })
+    const userAccountPageUrl = `${process.env.FRONTEND_LOCALHOST}/updateAccount`;
+    await new Email(newUser , userAccountPageUrl).welcomeMessage();
+
     createSendToken(newUser, res, next);
 })
 
@@ -100,6 +106,48 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 
     user.password = password;
     user.passwordConfirmation = passwordConfirmation;
+    await user.save();
+
+    createSendToken(user , res , next);
+})
+
+exports.forgetPassword = asyncHandler(async (req, res, next) => {
+    const {email} = req.body;
+    const user = await User.findOne({email});
+    if(!user) return next(new errorHandler("Please make sure your email is correct!" , 404));
+
+    const resetToken = user.createPasswordResetToken();
+    await user.save({validateBeforeSave : false});
+
+    try {
+        const resetPasswordUrl = `${process.env.FRONTEND_LOCALHOST}/resetPassword/${resetToken}`;
+        await new Email(user , resetPasswordUrl).resetPassword();
+
+        res.status(200).json({
+            status : "success",
+            message : "Token sent successfully to your email",
+        });
+    }
+    catch(error) {
+        user.passwordResetToken = undefined;
+        user.passwordResetTokenExpiration = undefined;
+        await user.save({validateBeforeSave : false});
+
+        return next(new errorHandler("there's an error occurred while sending reset token to your email" , 500))
+    }
+})
+
+exports.resetPassword = asyncHandler(async (req, res, next) => {
+    const hashedToken = crypto.createHash("sha256").update(req.params.resetToken).digest("hex");
+    const user = await User.findOne({passwordResetToken : hashedToken ,
+    passwordResetTokenExpiration : { $gt : Date.now() } });
+
+    if(!user) return next("Token is invalid or has expired!!" , 400);
+
+    user.password = req.body.password
+    user.passwordConfirmation = req.body.passwordConfirmation
+    user.passwordResetToken = undefined;
+    user.passwordResetTokenExpiration = undefined;
     await user.save();
 
     createSendToken(user , res , next);

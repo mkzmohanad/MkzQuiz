@@ -67,3 +67,29 @@ export async function restrictedForAdmin() {
         throw new Error(error)
     }
 }
+
+export async function forgetPassword(userEmail) {
+    try {
+        const data = await axios.post(`${BACKEND_URL}/api/v1/users/forgetPassword` , userEmail , {
+            withCredentials: true
+        })
+
+        return data;
+    }
+    catch(error) {
+        throw new Error(error)
+    }
+}
+
+export async function resetPassword(userResetPassword , resetToken) {
+    try {
+        const data = await axios.patch(`${BACKEND_URL}/api/v1/users/resetPassword/${resetToken}` , userResetPassword , {
+            withCredentials: true
+        })
+
+        return data;
+    }
+    catch(error) {
+        throw new Error(error)
+    }
+}

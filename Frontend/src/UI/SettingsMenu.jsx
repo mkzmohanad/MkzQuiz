@@ -37,7 +37,7 @@ function SettingMenu({handleSetToggleDeleteMeModal , handleSetToggleResetMeModal
         
         <MenuList className="flex flex-col gap-2 bg-darkColor border-[1px] border-mediumColor text-lightColor">
           {role === "user" && <MenuItem className="flex items-center justify-center gap-4 py-2 px-2 capitalize" onClick={() => navigate("/updateAccount")}>
-            <Typography className="text-base active:bg-red-500">update user info</Typography>
+            <Typography className="text-base">update user info</Typography>
           </MenuItem>}
 
           {role === "admin" && <MenuItem className="flex items-center justify-center gap-4 py-2 px-2 capitalize" onClick={() => navigate("/admin/updateAccount")}>

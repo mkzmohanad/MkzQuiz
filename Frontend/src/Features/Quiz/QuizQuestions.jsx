@@ -5,7 +5,6 @@ import { useQuestions } from "./useQuestions";
 import { useStartingGame } from "./useStartingGame"
 import { useTimer } from "../../Hooks/useTimer";
 import { useFinishQuiz } from "../../Hooks/useFinishQuiz";
-import { SECONDS_PER_QUESTION } from "../../Utils/constants";
 import { useSettings } from "../Settings/useSettings";
 
 import Loading from "../../UI/Loading";
@@ -15,8 +14,6 @@ import QuizNextQuestion from "./QuizNextQuestion";
 import QuizConfirmQuestion from "./QuizConfirmQuestion";
 import FinishQuiz from "./FinishQuiz";
 import QuizHeader from "./QuizHeader";
-
-
 
 function QuizQuestions() {
     const [currentQuestionIndex , setCurrentQuestionIndex] = useState(0);
@@ -28,12 +25,12 @@ function QuizQuestions() {
     const [confirmedAnswer , setConfirmedAnswer] = useState(false)
     const [isActive, setIsActive] = useState(true);
 
-    const secondsLeft = useTimer(SECONDS_PER_QUESTION , resetCounter , isActive)
     const {questions , isLoadingQuestions} = useQuestions();
     const {settings , isLoadingSettings} = useSettings();
     const {isStartingGame} = useStartingGame();
     const handleFinishQuiz = useFinishQuiz();
-
+    
+    const secondsLeft = useTimer(settings?.data.questionDuration , resetCounter , isActive)
     const numberOfQuestions = settings?.data?.numberOfQuestions || 20;
 
     const allQuestions = questions?.data?.docs.slice(0 , numberOfQuestions ) || [];

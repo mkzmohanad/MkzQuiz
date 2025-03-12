@@ -1,5 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
+
 import { useUserAccount } from "../Features/User/useUserAccount";
+
 import Loading from "./Loading";
 
 function UserRoutes() {

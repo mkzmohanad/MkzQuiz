@@ -18,7 +18,7 @@ function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , update
 
     const {deleteMe , isDeleting} = useDeleteMe()
     const {updateUserPassword , isUpdatingPassword} = useUpdateUserPassword()
-    const {updateUserData , isUpdating} = useUpdateUserData()
+    const {updateUserData} = useUpdateUserData()
     const {logout , isLoggingOut} = useLogout()
 
     const [showPassword , handleSetShowPassword] = useToggleShowPassword();

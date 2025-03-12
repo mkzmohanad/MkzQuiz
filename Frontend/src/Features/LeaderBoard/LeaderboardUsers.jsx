@@ -8,6 +8,7 @@ function LeaderboardUsers({numberOfTopPlayers , topPlayers}) {
             key={topPlayer._id}
             rank={index + 1}
             username={topPlayer.username}
+            profileImageUrl={topPlayer?.profileImageUrl}
             totalMatchesWon = {topPlayer.totalMatchesWon}
             highestScore = {topPlayer.highestScore}
             />)}

@@ -30,7 +30,7 @@ function SignUpForm() {
                 reset()
             },
             onSuccess : () => {
-                navigate("/account")
+                navigate("/account", { replace: true })
             }
         })
     }

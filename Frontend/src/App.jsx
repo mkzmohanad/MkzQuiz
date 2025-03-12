@@ -18,6 +18,8 @@ import AdminRoutes from "./UI/AdminRoutes";
 import UpdateAllUsers from "./Features/Admin/UpdateAllUsers";
 import UpdateQuizQuestions from "./Features/Admin/UpdateQuizQuestions";
 import PageNotFound from "./Pages/PageNotFound";
+import ForgetPassword from "./Pages/ForgetPassword";
+import ResetPassword from "./Pages/ResetPassword";
 
 function App() {
     const queryClient = new QueryClient({
@@ -52,6 +54,8 @@ function App() {
                 </Route>
                     <Route path="login" element = {<Login />} />
                     <Route path="signup" element = {<SignUp />} />
+                    <Route path = "forgetPassword" element = {<ForgetPassword />} />
+                    <Route path = "resetPassword/:resetToken" element = {<ResetPassword />} />
                     <Route path = "*" element = {<PageNotFound />} />
             </Routes>
         </BrowserRouter>

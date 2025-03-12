@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import "./../Styles/globalStyles.css";
-import { SECONDS_PER_QUESTION } from "./../Utils/constants";
 
+import { useSettings } from "../Features/Settings/useSettings";
+
+import Loading from "./Loading";
+
+import "./../Styles/globalStyles.css";
 
 const CircularProgressBar = ({ secondsLeft }) => {
+  const { settings, isLoadingSettings } = useSettings();
+
   const totalCircumference = 219.911; // Circumference of the circle (2 * Math.PI * r)
   const [strokeDashoffset, setStrokeDashoffset] = useState(totalCircumference);
 
@@ -13,9 +18,11 @@ const CircularProgressBar = ({ secondsLeft }) => {
       return;
     }
 
-    const progress = (secondsLeft / SECONDS_PER_QUESTION) * totalCircumference; // Assuming 30 is the max time
+    if(isLoadingSettings) return <Loading />
+
+    const progress = (secondsLeft / settings.data.questionDuration) * totalCircumference; // Assuming 30 is the max time
     setStrokeDashoffset(totalCircumference - progress);
-  }, [secondsLeft]);
+  }, [secondsLeft , settings.data.questionDuration , isLoadingSettings]);
 
   return (
       <div className="circular-timer">

@@ -32,7 +32,7 @@ function Header() {
     const {user , isLoadingUser} = useUserAccount();
     
     if(isLoadingUser || isResetting) return <Loading />
-    const {role} = user.data.data
+    const {role , profileImage , profileImageUrl , username} = user.data.data
 
     function handleLogout() {
         logout()
@@ -46,12 +46,12 @@ function Header() {
             actionName ="yes, reset now"
             functionToPerform={reset}/> : ""}
 
-        <header className="flex items-center justify-between py-3 px-12 md:px-24 bg-darkColor fixed top-0 z-10 w-full">
+        <header className="flex items-center justify-between py-3 px-5 sm:px-12 md:px-24 bg-darkColor fixed top-0 z-10 w-full">
             <Logo size="small" />
             <ul className="flex items-center gap-4">
                 {
                     role === "user" && <>
-                    <ListItem onClick={ () => navigate("/") }><HiOutlineUserCircle /></ListItem>
+                    <ListItem onClick={ () => navigate("/") }>{profileImage && profileImageUrl ? <img src={profileImageUrl} alt={`image of the user ${username}`} className="w-7 h-7 rounded-full" /> : <HiOutlineUserCircle />}</ListItem>
                     <ListItem onClick={ () => navigate("/leaderboard") }><MdOutlineBarChart /></ListItem>
                 </>
                 }

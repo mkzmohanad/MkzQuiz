@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto")
+
 const Settings = require("./SettingsModel");
-const asyncHandler = require('../Utils/asyncHandler');
 
 const userSchema = mongoose.Schema({
     username : {
@@ -31,6 +32,12 @@ const userSchema = mongoose.Schema({
                 return value === this.password;
             } 
         }
+    },
+    profileImage : {
+        type : String,
+    },
+    profileImageUrl : {
+        type : String,
     },
     isActive : {
         type : Boolean,
@@ -88,7 +95,6 @@ const userSchema = mongoose.Schema({
     passwordChangedAt : Date,
     passwordResetToken : String,
     passwordResetTokenExpiration : Date,
-
 })
 
 userSchema.index({score : 1 , totalTakenTime : -1});
@@ -106,7 +112,6 @@ userSchema.pre(/^find/ , function(next) {
     this.find({isActive : {$ne : false}})
     next()
 })
-
 
 userSchema.pre("findOneAndUpdate" , async function(next) {
     const update = this.getUpdate()
@@ -146,6 +151,13 @@ userSchema.methods.isChangedPassword = async function (tokenCreatedTime) {
         return passwordChangedAtTamp > tokenCreatedTime;
     }
     return false;
+}
+userSchema.methods.createPasswordResetToken = function() {
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    this.passwordResetTokenExpiration = Date.now() + 10 * 60 * 1000;
+
+    return resetToken;
 }
 
 const User = mongoose.model('User' , userSchema);

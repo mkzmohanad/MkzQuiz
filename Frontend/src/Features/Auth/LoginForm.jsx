@@ -26,7 +26,7 @@ function LoginForm() {
     function handleSubmitFunction(data) {
         login(data , {
             onSuccess : () => {
-                navigate("/")
+                navigate("/account", { replace: true })
             },
             onError : () => {
                 reset()

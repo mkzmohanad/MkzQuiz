@@ -1,4 +1,5 @@
 const express = require('express');
+
 const { getAllQuestions, addNewQuestion, deleteQuestion, updateQuestion, getOneQuestion, deleteAllQuestions } = require('../Controllers/QuestionController');
 const { protectRoutes, restrictedTo } = require('../Controllers/AuthController');
 

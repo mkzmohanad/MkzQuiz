@@ -9,12 +9,11 @@ export function useCreateNewQuestion() {
         mutationFn : createNewQuestionApi,
         onSuccess : () => {
             queryClient.invalidateQueries({queryKey : ["questions"]})
-            toast.success("question created successfully.");
+            toast.success("question added successfully.");
         },
-        onError : (error) => {
-            toast.error(`an error occurred while creating new question!, ${error}`)
+        onError : () => {
+            toast.error(`an error occurred while adding new question!, Please check for the rules of adding questions and follow them`)
         }
     })
-
     return {createNewQuestion , isCreatingNewQuestion}
 }

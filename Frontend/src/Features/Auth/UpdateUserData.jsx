@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { HiMiniAtSymbol, HiOutlineUser } from "react-icons/hi2";
+import { FaRegCheckCircle } from "react-icons/fa";
 import { useState } from "react";
 
 import { useToggleShowPassword } from "../../Hooks/useToggleShowPassword";
@@ -19,13 +20,15 @@ import DeleteAndUpdateConfirmation from "../../UI/DeleteAndUpdateConfirmation";
 import ConfirmModal from "../../UI/ConfirmModal";
 import Loading from "./../../UI/Loading";
 import MiniSpinner from "../../UI/MiniSpinner";
+import InputFile from "../../UI/InputFile";
+import InputFileButton from "../../UI/InputFileButton";
 
 function UpdateUserData() {
     const [updatedDataHolder , setUpdatedDataHolder] = useState("")
     const {user , isLoading} = useUserAccount()
 
     
-    const {register:registerAccountData , formState : formStateAccountData , handleSubmit : handleSubmitAccountData , reset:resetUserData} = useForm();
+    const {register:registerAccountData , formState : formStateAccountData , handleSubmit : handleSubmitAccountData , reset:resetUserData , watch:watchUserData} = useForm();
     const {errors : errorsAccountData} = formStateAccountData;
     
     const {updateUserData , isUpdating} = useUpdateUserData()
@@ -41,6 +44,7 @@ function UpdateUserData() {
     const {toggleModal : toggleUpdatePasswordModal , handleSetToggleModal : handleSetToggleUpdatePasswordModal} = useToggleModal()
 
     let type;
+    const uploadedImage = watchUserData("image");
 
     function handleUpdateUserData() {
         updateUserData(updatedDataHolder , {
@@ -54,12 +58,12 @@ function UpdateUserData() {
     }
 
     function handleSubmitUpdateUserData(data) {
-        let updatedData ; 
-        if(data.username && data.email) updatedData =   data
-        if(data.username && !data.email) updatedData = {"username" : data.username}
-        if(!data.username && data.email) updatedData = {"email" : data.email}
+        const formData = new FormData();
+        if (data.username) formData.append('username', data.username);
+        if (data.email) formData.append('email', data.email);
+        if (data.image && data.image.length > 0) formData.append('image', data.image[0]); 
 
-        setUpdatedDataHolder(updatedData)
+        setUpdatedDataHolder(formData)
         handleSetToggleUpdateUserDateMeModal()
         type = "updateNormalData"
     }
@@ -90,7 +94,7 @@ function UpdateUserData() {
                 <div  className="w-full lg:w-1/2 flex flex-col gap-7" >
                     <InputBox>
                         <div className="relative">
-                            <Input type = "text" placeholder={username} disabled={isUpdating} {...registerAccountData("username" , {})}/>
+                            <Input type = "text" placeholder={username} disabled={isUpdatingPassword || isUpdating} {...registerAccountData("username" , {})}/>
                         <InputIcon>
                             <HiOutlineUser />
                             </InputIcon>
@@ -100,13 +104,25 @@ function UpdateUserData() {
                     
                     <InputBox>
                         <div className="relative">
-                            <Input type = "email" placeholder={email} disabled={isUpdating} {...registerAccountData("email" , {})}/>
+                            <Input type = "email" placeholder={email} disabled={isUpdatingPassword || isUpdating} {...registerAccountData("email" , {})}/>
                             <InputIcon>
                                 <HiMiniAtSymbol />
                             </InputIcon>
                         </div>
                         <ErrorLabel error = {errorsAccountData?.email?.message} />
                     </InputBox>
+
+                    {user.data.data.role === "user" &&  
+                        <InputBox>
+                            <div className="relative">
+                                <InputFile type="file" accept="image/*" {...registerAccountData("image" , {})} />
+                                <InputFileButton imageUploaded = {uploadedImage?.length > 0} disabled={isUpdatingPassword || isUpdating}>{uploadedImage?.length > 0 ? 
+                                <div className="flex items-center justify-center gap-2">Image uploaded successfully <FaRegCheckCircle />
+                                </div> 
+                                :"Upload your profile image"}</InputFileButton>
+                            </div>
+                        </InputBox>
+                    }
                 </div>
 
                 <div className="flex items-center justify-center xl:justify-end gap-6 w-full xl:w-1/2">
@@ -123,7 +139,7 @@ function UpdateUserData() {
                     showPassword = {showPassword} 
                     handleSetShowPassword = {handleSetShowPassword} 
                     errors = {errorsAccountUpdatePassword?.password?.message} 
-                    isDisabled={isUpdatingPassword} 
+                    isDisabled={isUpdatingPassword || isUpdating} 
                     register = {registerAccountUpdatePassword}
                     fieldName= "password"
                     placeholder= "Create Password"
@@ -135,7 +151,7 @@ function UpdateUserData() {
                     showPassword = {showPasswordConfirmation} 
                     handleSetShowPassword = {handleSetShowPasswordConfirmation} 
                     errors = {errorsAccountUpdatePassword?.passwordConfirmation?.message} 
-                    isDisabled={isUpdatingPassword} 
+                    isDisabled={isUpdatingPassword || isUpdating} 
                     register = {registerAccountUpdatePassword}
                     fieldName= "passwordConfirmation"
                     placeholder= "Confirm Password"
