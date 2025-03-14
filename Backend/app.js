@@ -36,9 +36,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// if(process.env.NODE_ENV === 'development') console.log("in development mode");
-// if(process.env.NODE_ENV === 'production') console.log("in production mode");
-
 app.use("/api/v1/users" , userRoutes);
 app.use("/api/v1/questions" , questionRoutes);
 app.use("/api/v1/settings" , settingsRoutes)
