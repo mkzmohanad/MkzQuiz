@@ -9,7 +9,7 @@ export function useUpdateUserPassword() {
             toast.success("Password has been updated successfully")
         },
         onError : () => {
-            toast.error("Error occurred while updating password, please try again later")
+            toast.error("Error occurred while updating password, please try again later and check if confirmation password is correct")
         }
     })
 

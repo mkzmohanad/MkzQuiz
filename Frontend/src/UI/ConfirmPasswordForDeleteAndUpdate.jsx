@@ -12,7 +12,6 @@ import PasswordInput from "./PasswordInput";
 import MiniSpinner from "./MiniSpinner";
 
 function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , updatedData}) {
-
     const {register , handleSubmit , formState , reset} = useForm()
     const {errors} = formState;
 
@@ -48,7 +47,7 @@ function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , update
         </div>
         <form onSubmit={handleSubmit(handleSubmitConfirmPasswordForDeleteAndUpdate)} className=" flex flex-col justify-center gap-5 bg-mediumColor pt-16 pb-8 px-4 sm:px-10 z-30 rounded-lg">
             <h1 className = "font-extrabold text-darkestColor text-2xl sm:text-3xl text-center capitalize">{`Confirm your password for ${type === "delete" ? "delete" : "update"}`}</h1>
-            <p className="text-darkestColor sm:text-lg text-center tracking-wider">Please enter your password to confirm that you want to delete your account.</p>
+            <p className="text-darkestColor sm:text-lg text-center tracking-wider">{`Please enter your password to confirm that you want to ${type === "delete" ? "delete your account" : "update your data"}.`}</p>
             <PasswordInput
                     showPassword = {showPassword} 
                     handleSetShowPassword = {handleSetShowPassword} 
@@ -62,7 +61,7 @@ function ConfirmPasswordForDeleteAndUpdate({type , handleSetToggleModal , update
                 />
             <div className="flex items-center w-full justify-center">
                 <Button size="primary" variation="danger" disabled={isDeleting || isLoggingOut || errors?.password}>
-                    {isDeleting || isLoggingOut || isUpdatingPassword ? <MiniSpinner /> : "delete my account"}
+                    {isDeleting || isLoggingOut || isUpdatingPassword ? <MiniSpinner /> : type === "delete" ? "delete my account" : "update data now"}
                 </Button>
             </div>
         </form>

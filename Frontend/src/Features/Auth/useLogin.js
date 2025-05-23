@@ -10,7 +10,7 @@ export function useLogin() {
             toast.success("you have logged in successfully.");  
         },
         onError : () => {
-            toast.error("an error occurred while logging in, please try again.")
+            toast.error("an error occurred while logging in, please try again later or check for your email and password.")
         }
     })
     return {login , isLoggingIn}

@@ -25,6 +25,7 @@ import InputFileButton from "../../UI/InputFileButton";
 
 function UpdateUserData() {
     const [updatedDataHolder , setUpdatedDataHolder] = useState("")
+    const [type , setType] = useState("")
     const {user , isLoading} = useUserAccount()
 
     
@@ -43,7 +44,6 @@ function UpdateUserData() {
     const {toggleModal : toggleUpdateUserDateMeModal , handleSetToggleModal : handleSetToggleUpdateUserDateMeModal} = useToggleModal();
     const {toggleModal : toggleUpdatePasswordModal , handleSetToggleModal : handleSetToggleUpdatePasswordModal} = useToggleModal()
 
-    let type;
     const uploadedImage = watchUserData("image");
 
     function handleUpdateUserData() {
@@ -65,13 +65,13 @@ function UpdateUserData() {
 
         setUpdatedDataHolder(formData)
         handleSetToggleUpdateUserDateMeModal()
-        type = "updateNormalData"
+        setType("updateNormalData")
     }
 
     function handleSubmitUpdateUserPassword(data) {
         setUpdatedDataHolder(data)
         handleSetToggleUpdatePasswordModal();
-        type = "updatePasswordData"
+        setType("updatePasswordData")
     }
     
     if(isUpdating || isLoading || isUpdatingPassword) return <Loading />

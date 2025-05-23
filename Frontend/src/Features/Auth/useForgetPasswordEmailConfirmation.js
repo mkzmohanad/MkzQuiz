@@ -7,7 +7,7 @@ export function useForgetPasswordEmailConfirmation() {
     const {mutate : forgetPasswordEmailConfirmation , isPending : isConfirming} = useMutation({
         mutationFn : forgetPassword,
         onSuccess : () => toast.success("reset password URL send successfully to your email"),
-        onError : () => toast.error("an error occurred while sending your URL to your email"),
+        onError : () => toast.error("an error occurred while sending your URL to your email, please check if your email is correct!"),
     })
 
     return {forgetPasswordEmailConfirmation , isConfirming}
